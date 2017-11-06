@@ -1,0 +1,65 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   	http://www.springframework.org/schema/beans/spring-beans.xsd
+   	http://www.springframework.org/schema/context
+   	http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Load properties file | This location tells from where to properties 
+		file -->
+	<context:property-placeholder location="classpath:car.properties" />
+
+	<!-- provide helper class. Any Engine implementing classes are helper class 
+		for car factory class. -->
+	<bean id="MyBMWEngine" 		class="com.springdemo.di.engine.BMWEngine"></bean>
+	<bean id="MyAudiEngine" 	class="com.springdemo.di.engine.AudiEngine"></bean>
+	<bean id="MyMarutiEngine" 	class="com.springdemo.di.engine.MarutiEngine"></bean>
+	<bean id="MyHondaEngine" 	class="com.springdemo.di.engine.HondaEngine"></bean>
+
+	<!-- ====================================================================== -->
+	<!-- constructor injection -->
+	
+	<!-- create bean 1. id is to refer this bean. 2. class attribute determine 
+		which bean object needs to be created. -->
+	<bean id="MyBMW" class="com.springdemo.di.car.BMWCar">
+
+		<!-- inject dependency using constructor -->
+		<constructor-arg ref="MyBMWEngine"></constructor-arg>
+	</bean>
+
+	<!-- ================================================================ -->
+	<!-- setter injection -->
+	
+	<bean id="MyAudi" class="com.springdemo.di.car.AudiCar">
+
+		<!-- inject dependency using setter method of Audi class -->
+		<property name="engine" ref="MyAudiEngine"></property>
+	</bean>
+	<!-- ================================================================ -->
+	<!-- Field injection -->
+	
+	<bean id="MyMaruti" class="com.springdemo.di.car.MarutiCar">
+		<property name="engine" ref="MyMarutiEngine"></property>
+		
+		<!-- inject dependency using field of the class maruti -->
+		<property name="email" value="ravi.1rn12cs078@gmail.com"></property>
+		<property name="name" value="Ravi Ranjan"></property>
+		
+	</bean>
+
+	<!-- ================================================================ -->
+	<!-- properties file injection -->
+	
+	<bean id="MyHonda" class="com.springdemo.di.car.HondaCar">
+
+		<!-- inject dependency using setter method of Honda class -->
+		<property name="engine" ref="MyHondaEngine"></property>
+
+		<!-- inject dependency using properties file -->
+		<property name="ownerName" value="${owner.name}"></property>
+		<property name="ownerMobile" value="${owner.mobile}"></property>
+	</bean>
+
+</beans>

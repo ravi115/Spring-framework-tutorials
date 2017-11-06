@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   	http://www.springframework.org/schema/beans/spring-beans.xsd
+   	http://www.springframework.org/schema/context
+   	http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 
+		1. in this tutorials will be explore bean life cycle method.
+		2.  as we know in servlet, we have init method and destroy method which
+		will be called only once when application starts and close respectively.
+		3. similar to that we can also do in spring using some attribute. 
+			a. init-method
+			b. destroy-method
+	-->
+	<bean id="MyCoach" 
+	class="com.springdemo.bean.life.coach.CrcketCoach"
+	init-method="initBeanMethod"
+	destroy-method="destroyBeanMethod">
+	
+	</bean>
+	
+</beans>
