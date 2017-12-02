@@ -6,11 +6,13 @@
    	http://www.springframework.org/schema/beans/spring-beans.xsd
    	http://www.springframework.org/schema/context
    	http://www.springframework.org/schema/context/spring-context.xsd">
-	
+
 	<!-- 
 		if we are using annotation based spring framework then we should scan all the bean classes and 
 		load into spring container.
 		we can add all bean entry by comma separated. 
+		remember! we have to only specify the package name containing bean class.
+		if we need to specify more than one package we can use comma to separate then bean package name. 
 	-->
-	<context:component-scan base-package="com.springdemo.scope.cycle"></context:component-scan>
+	<context:component-scan base-package="com.springdemo.ioc.mobile"></context:component-scan>
 </beans>
