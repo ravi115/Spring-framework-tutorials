@@ -32,7 +32,7 @@ Let's say if want to add spring MVC support then we must include the below schem
 - bean is nothing but an object of java class.
 - spring container creates the object of specified class which is known as a bean.
 
-### what are minimum attribute used in the bean element?
+### what are the minimum attribute used in the bean element?
 - Here's the list of attribute used in the bean element: 
   1. **id** = "myBeanId"
     - this is the id of bean.
@@ -60,3 +60,101 @@ Let's say if want to add spring MVC support then we must include the below schem
  **_Let's see the complete structure of bean_**
  
     <bean id="myBeanId" class="mypackage.Myclass" init-method="myInitMethod" destroy-method="myDestroyMethod" scope="prototype">       </bean>
+    
+### what is property and constructor-args element and when it is used?
+- so property and constructor-args is the child element of bean.
+- it is used with bean in some special cases.
+- when we are defining the **dependecies_injection** using **_constructor_** then we use **<constuctor-args ref=""></constructor-args>**   element with bean.
+- when we are defining the **dependecies_injection** using **_setter_** || injecting some **_field of bean_**  || injecting some **_properties_file values_** then we use <Property></property> element with bean.
+- **Here's the syntax**
+    
+        <bean>
+            <constructor-agrs ref = "anotherBeanId" ></constructor-agrs>
+         </bea>
+         ----------------------------------------------------------------------
+         <bean>
+            <property name="field-name-of bean class" ref="anotherBeanId"></property>
+            <property name="field-name-of bean class" value="some_values"></property>
+            <property name="field-name-of bean class" value="${key_from_properties_file}"></property>
+         </bean>
+
+**Important point**
+- when we are refering to any properties file we must include below tags which defines the location of properties file.
+```diff
+    - <context:property-placeholder location="classpath:car.properties" />
+ ```   
+[click here to see the complete the configuration of xml file](https://github.com/ravi115/Spring-framework-tutorials/blob/master/Spring-framework-XML-5.0/spring-dependency-injection/dependency-injection.xml)
+
+### A Demo XML configuration file ; -
+
+        <?xml version = "1.0" encoding = "UTF-8"?>
+
+        <beans 
+            xmlns="http://www.springframework.org/schema/beans"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+            xmlns:context="http://www.springframework.org/schema/context"
+            xsi:schemaLocation="http://www.springframework.org/schema/beans
+            xmlns:mvc=http://www.springframework.org/schema/mvc
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd"
+            http://www.springframework.org/schema/mvc
+            http://www.springframework.org/schema/mvc/spring-mvc.xsd>
+
+            <!-- Load properties file | This location tells from where to properties 
+                file -->
+            <context:property-placeholder location="classpath:car.properties" />
+
+            <!-- provide helper class. Any Engine implementing classes are helper class 
+                for car factory class. -->
+            <bean id="MyBMWEngine" 		class="com.springdemo.di.engine.BMWEngine"></bean>
+            <bean id="MyAudiEngine" 	class="com.springdemo.di.engine.AudiEngine"></bean>
+            <bean id="MyMarutiEngine" 	class="com.springdemo.di.engine.MarutiEngine"></bean>
+            <bean id="MyHondaEngine" 	class="com.springdemo.di.engine.HondaEngine"></bean>
+
+            <!-- ====================================================================== -->
+            <!-- constructor injection -->
+
+            <!-- create bean 1. id is to refer this bean. 2. class attribute determine 
+                which bean object needs to be created. -->
+            <bean id="MyBMW" class="com.springdemo.di.car.BMWCar">
+
+                <!-- inject dependency using constructor -->
+                <constructor-arg ref="MyBMWEngine"></constructor-arg>
+            </bean>
+
+            <!-- ================================================================ -->
+            <!-- setter injection -->
+
+            <bean id="MyAudi" class="com.springdemo.di.car.AudiCar">
+
+                <!-- inject dependency using setter method of Audi class -->
+                <property name="engine" ref="MyAudiEngine"></property>
+            </bean>
+            <!-- ================================================================ -->
+            <!-- Field injection -->
+
+            <bean id="MyMaruti" class="com.springdemo.di.car.MarutiCar">
+                <property name="engine" ref="MyMarutiEngine"></property>
+
+                <!-- inject dependency using field of the class maruti -->
+                <property name="email" value="ravi.1rn12cs078@gmail.com"></property>
+                <property name="name" value="Ravi Ranjan"></property>
+
+            </bean>
+
+            <!-- ================================================================ -->
+            <!-- properties file injection -->
+
+            <bean id="MyHonda" class="com.springdemo.di.car.HondaCar">
+
+                <!-- inject dependency using setter method of Honda class -->
+                <property name="engine" ref="MyHondaEngine"></property>
+
+                <!-- inject dependency using properties file -->
+                <property name="ownerName" value="${owner.name}"></property>
+                <property name="ownerMobile" value="${owner.mobile}"></property>
+
+            </bean>
+
+        </beans>
