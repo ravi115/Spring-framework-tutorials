@@ -4,7 +4,7 @@
 **In this tutorials we will be configuring our spring setup using annotation as well as XML.**
 - As we have seen all the setup  requirement for [XML in the spring-XML-configuration](https://github.com/ravi115/Spring-framework-tutorials/blob/master/Spring-framework-XML-5.0/readme.md).
 
-- so if we are using annotation to specifying **_bean classes_**, **_dependency injection_** then we need to add only ```<component-scanning>``` element in our XML configuration.
+- so if we are using annotation to specifying **_bean classes_**, **_dependency injection_** then we need to add only ```<component-scan>``` element in our XML configuration.
 - see the complete XML configuration. 
 
                         <?xml version = "1.0" encoding = "UTF-8"?>
@@ -39,5 +39,23 @@
  
  - **_@Component_** || **_@Component("beanId")_**
   - Available in the **org.springframework.stereotype.Component**
-  - class level annotation used to define this is a bean class.
- 
+  - class level annotation used to define a bean class.
+  - if we won't use any bean id then spring container by default uses class name with first letter in lower case to identify a bean.
+  - e.g. if we have class called _Student_ then spring container will expect _student_ {noticed first latter in lower case} as a beanId.
+  
+- **_@Autowired_** || **_@Autowired(required=true)_**
+  - Available in the **org.springframework.beans.factory.annotation.Autowired**.
+  - this is used for **_dependency-injection_**.
+  - we will use this annotation on fields, _constructor_ or _setter_.
+  
+- **_@Qualifier("class-name")_**
+  - Available in **org.springframework.beans.factory.annotation.Qualifier**.
+  - used with **@Autowired** annotation.
+  - this is used to tell that depency of which class is being used here.
+  - this is used when we are refering for dependency injection to a packages which contains more than one classes.
+
+- **_@Value("${key_from_properties_file}")_**
+  - Available in the **org.springframework.beans.factory.annotation.Value**.
+  - used on _fields_ only.
+  - used to set a value for field read from properties file.
+  
