@@ -13,9 +13,11 @@ First see the XML Configuration structure:  -
 **beans element holds the XML schema** and **XSD which validates the elemenet used in XML configurations.**
 so the basic XML confguration must contain the following XSD: - 
        
-       <beans xmlns="http://www.springframework.org/schema/beans"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-          xsi:schemaLocation="http://www.springframework.org/schema/beans
+       <beans 
+            xmlns="http://www.springframework.org/schema/beans"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+            xmlns:context="http://www.springframework.org/schema/context"
+            xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans.xsd
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context.xsd">
@@ -34,7 +36,7 @@ Let's say if we want to add spring MVC support then we must include the below sc
 - spring container creates the object of specified class which is known as a bean.
 
 ### what are the minimum attribute used in the bean element?
-- Here's the list of attribute used in the bean element: 
+- Here's the list of few attributes used in the bean element: 
   1. **id** = "myBeanId"
     - this is the id of bean.
     - spring contianer uses this id to create the bean.
@@ -69,15 +71,20 @@ Let's say if we want to add spring MVC support then we must include the below sc
 - when we are defining the **dependecies_injection** using **_setter_** || injecting some **_field of bean_**  || injecting some **_properties_file values_** then we use <Property></property> element with bean.
 - **Here's the syntax**
     
-         <bean>
+         <bean id="myBeanId" class="mypackage.MyClass">
+         
             <constructor-agrs ref = "anotherBeanId" ></constructor-agrs>
-         </bean>
-         ----------------------------------------------------------------------
-         <bean>
+         
+         </bean>
+         
+         <bean id="myBeanId" class="mypackage.MyClass">
+           
             <property name="field-name-of bean class" ref="anotherBeanId"></property>
             <property name="field-name-of bean class" value="some_values"></property>
             <property name="field-name-of bean class" value="${key_from_properties_file}"></property>
+         
          </bean>
+         
 
 **Important point**
 - when we are refering to any properties file we must include below tags which defines the location of properties file.
@@ -85,6 +92,15 @@ Let's say if we want to add spring MVC support then we must include the below sc
     - <context:property-placeholder location="classpath:car.properties" />
  ```   
 [click here to see the complete the configuration of xml file](https://github.com/ravi115/Spring-framework-tutorials/blob/master/Spring-framework-XML-5.0/spring-dependency-injection/dependency-injection.xml)
+
+**To scan all the bean classes specified in some of the packeges we can use the below XML configuration**
+    
+        <context:component-scan base-package="mypackages"></context:component-scan>
+-  using the above context element spring container loads the classes from specified packages name in the **_base-packages_** attribute.
+-  we can also specify the more than one package name using comma separated.
+-  e.g.  
+                
+        <context:component-scan base-package="mypackages1, mypackages2, .... mypackages-n"></context:component-scan>
 
 ### A Demo XML configuration file ; -
 
