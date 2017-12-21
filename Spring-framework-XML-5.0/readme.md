@@ -67,8 +67,8 @@ Let's say if we want to add spring MVC support then we must include the below sc
 ### what is property and constructor-args element and when it is used?
 - so property and constructor-args is the child element of bean.
 - it is used with bean in some special cases.
-- when we are defining the **dependecies_injection** using **_constructor_** then we use ```<constuctor-args ref=""></constructor-args>```  element with bean.
-- when we are defining the **dependecies_injection** using **_setter_** || injecting some **_field of bean_**  || injecting some **_properties_file values_** then we use ```<Property></property>``` element with bean.
+- when we are defining the **dependecy_injection** using **_constructor_** then we use ```<constuctor-args ref=""></constructor-args>```  element with bean.
+- when we are defining the **dependecy_injection** using **_setter_** || injecting some **_field of bean_**  || injecting some **_properties_file values_** then we use ```<Property></property>``` element with bean.
 - **Here's the syntax**
     
          <bean id="myBeanId" class="mypackage.MyClass">
