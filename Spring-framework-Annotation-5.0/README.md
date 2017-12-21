@@ -35,13 +35,13 @@
                         </beans>
               
  
- ### we require some basic annotation defined below: -**
+ ### we require some basic annotation defined below: -
  
  - **_@Component_** || **_@Component("beanId")_**
   - Available in the **org.springframework.stereotype.Component**
   - class level annotation used to define a bean class.
   - if we won't use any bean id then spring container by default uses class name with first letter in lower case to identify a bean.
-  - e.g. if we have class called _Student_ then spring container will expect _student_ {noticed first latter in lower case} as a beanId.
+  - e.g. if we have class called _Student_ then spring container will expect _student_ {noticed first letter in lower case} as a beanId.
   
 - **_@Autowired_** || **_@Autowired(required=true)_**
   - Available in the **org.springframework.beans.factory.annotation.Autowired**.
@@ -59,3 +59,19 @@
   - used on _fields_ only.
   - used to set a value for field read from properties file.
   
+- **_@PostConstruct_**
+  - Available in **javax.annotation.PostConstruct**.
+  - used to define _life cycle_ method for bean.
+  - this is the very first method and only once will be invoked by spring container once the bean is created.
+
+- **_@PreDestroy_**
+  - Available in **javax.annotation.PreDestroy**.
+  - used to define _life cycle_ method for bean.
+  - this is the last method will be invoked by spring container at the time of bean distruction.
+  
+- **_@Scope("default/singleton || prototype || request || ")_**
+  - Available in the **org.springframework.context.annotation.Scope**.
+  - used on the class only same as _componenet_ annotation.
+  - used to define the scope of bean.
+
+- 
