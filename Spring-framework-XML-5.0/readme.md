@@ -4,10 +4,11 @@ In this tutorials we will see how to setup configuration using XML.
 
 First see the XML Configuration structure:  -
     
-      <beans>
-          <bean>
-          </bean>
-      </beans>
+          <beans>
+              <bean>
+              </bean>
+          </beans>
+      
 
 **beans element holds the XML schema** and **XSD which validates the elemenet used in XML configurations.**
 so the basic XML confguration must contain the following XSD: - 
@@ -68,7 +69,7 @@ Let's say if we want to add spring MVC support then we must include the below sc
 - when we are defining the **dependecies_injection** using **_setter_** || injecting some **_field of bean_**  || injecting some **_properties_file values_** then we use <Property></property> element with bean.
 - **Here's the syntax**
     
-        <bean>
+         <bean>
             <constructor-agrs ref = "anotherBeanId" ></constructor-agrs>
          </bean>
          ----------------------------------------------------------------------
