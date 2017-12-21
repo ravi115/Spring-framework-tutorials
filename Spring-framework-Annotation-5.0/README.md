@@ -7,32 +7,32 @@
 - so if we are using annotation to specifying **_bean classes_**, **_dependency injection_** then we need to add only ```<component-scan>``` element in our XML configuration.
 - see the complete XML configuration. 
 
-                        <?xml version = "1.0" encoding = "UTF-8"?>
+                  <?xml version = "1.0" encoding = "UTF-8"?>
 
-                        <beans 
-                          xmlns="http://www.springframework.org/schema/beans"
-                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-                          xmlns:context="http://www.springframework.org/schema/context"
-                          xsi:schemaLocation="http://www.springframework.org/schema/beans
-                          http://www.springframework.org/schema/beans/spring-beans.xsd
-                          http://www.springframework.org/schema/context
-                          http://www.springframework.org/schema/context/spring-context.xsd">
+                  <beans 
+                    xmlns="http://www.springframework.org/schema/beans"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                    xmlns:context="http://www.springframework.org/schema/context"
+                    xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd
+                    http://www.springframework.org/schema/context
+                    http://www.springframework.org/schema/context/spring-context.xsd">
 
-                          <!-- location to load properties file -->
-                          <context:property-placeholder location="classpath:sport.properties"/>
+                    <!-- location to load properties file -->
+                    <context:property-placeholder location="classpath:sport.properties"/>
 
-                          <!-- 
-                            if we are using annotation based spring framework then we should scan all the bean classes and 
-                            load into spring container.
-                            we can add all bean entry by comma separated. 
-                            remember! we have to only specify the package name containing bean class.
-                            if we need to specify more than one package we can use comma to separate then bean package name. 
-                          -->
-                          <context:component-scan base-package="mypackage.Myclass-1,
-                                                                mypackage.Myclass-2,
-                                                                mypackage.Myclass-3">
-                          </context:component-scan>
-                        </beans>
+                    <!-- 
+                      if we are using annotation based spring framework then we should scan all the bean classes and 
+                      load into spring container.
+                      we can add all bean entry by comma separated. 
+                      remember! we have to only specify the package name containing bean class.
+                      if we need to specify more than one package we can use comma to separate then bean package name. 
+                    -->
+                    <context:component-scan base-package="mypackage.Myclass-1,
+                                                          mypackage.Myclass-2,
+                                                          mypackage.Myclass-3">
+                    </context:component-scan>
+                  </beans>
               
  
  ### we require some basic annotation defined below: -
@@ -74,4 +74,29 @@
   - used on the class only same as _componenet_ annotation.
   - used to define the scope of bean.
 
-- 
+- **_@Bean_**
+  - Available in the **org.springframework.context.annotation.Bean**.
+  - @Bean annotation is used to actually crate the bean [class object] of desired class.
+  - The method-name chosen for this bean creation is the actual bean-id. by this bean-id spring container invokes this class.
+  - e.g.
+           ``` 
+           @Bean
+            public OperatingSystem MyOS() {
+              return new AndroidPhone();
+            }
+           ```
+   - @return the objects of bean class to spring container.
+
+- **_@Configuration_**
+  - Available in **org.springframework.context.annotation.Configuration**.
+  - this annotation tells spring container that this is a configuration class.
+  
+- **_@ComponentScan("package-name")_**
+  - Avaiable in **org.springframework.context.annotation.ComponentScan**.
+  - this annotation used to tell spring container that loads the bean classes from the specified package.
+  - we can specify more than one package name using comma separeted.
+
+- **_@PropertySource("classpath:fileName.properties")_**
+  - Available in **org.springframework.context.annotation.PropertySource**.
+  - this annotation is used when we are reffering any properties file.
+  
