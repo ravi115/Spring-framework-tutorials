@@ -67,8 +67,8 @@ Let's say if we want to add spring MVC support then we must include the below sc
 ### what is property and constructor-args element and when it is used?
 - so property and constructor-args is the child element of bean.
 - it is used with bean in some special cases.
-- when we are defining the **dependecies_injection** using **_constructor_** then we use **<constuctor-args ref=""></constructor-args>**   element with bean.
-- when we are defining the **dependecies_injection** using **_setter_** || injecting some **_field of bean_**  || injecting some **_properties_file values_** then we use <Property></property> element with bean.
+- when we are defining the **dependecies_injection** using **_constructor_** then we use ```<constuctor-args ref=""></constructor-args>```  element with bean.
+- when we are defining the **dependecies_injection** using **_setter_** || injecting some **_field of bean_**  || injecting some **_properties_file values_** then we use ```<Property></property>``` element with bean.
 - **Here's the syntax**
     
          <bean id="myBeanId" class="mypackage.MyClass">
@@ -91,12 +91,12 @@ Let's say if we want to add spring MVC support then we must include the below sc
 ```diff
     - <context:property-placeholder location="classpath:car.properties" />
  ```   
-[click here to see the complete the configuration of xml file](https://github.com/ravi115/Spring-framework-tutorials/blob/master/Spring-framework-XML-5.0/spring-dependency-injection/dependency-injection.xml)
+[click here to see the complete configuration of xml file](https://github.com/ravi115/Spring-framework-tutorials/blob/master/Spring-framework-XML-5.0/spring-dependency-injection/dependency-injection.xml)
 
 **To scan all the bean classes specified in some of the packeges we can use the below XML configuration**
     
         <context:component-scan base-package="mypackages"></context:component-scan>
--  using the above context element spring container loads the classes from specified packages name in the **_base-packages_** attribute.
+-  using the above context element spring container loads the bean from specified packages name in the **_base-packages_** attribute.
 -  we can also specify the more than one package name using comma separated.
 -  e.g.  
                 
@@ -124,6 +124,7 @@ Let's say if we want to add spring MVC support then we must include the below sc
 
             <!-- provide helper class. Any Engine implementing classes are helper class 
                 for car factory class. -->
+                
             <bean id="MyBMWEngine" 		class="com.springdemo.di.engine.BMWEngine"></bean>
             <bean id="MyAudiEngine" 	class="com.springdemo.di.engine.AudiEngine"></bean>
             <bean id="MyMarutiEngine" 	class="com.springdemo.di.engine.MarutiEngine"></bean>
@@ -134,6 +135,7 @@ Let's say if we want to add spring MVC support then we must include the below sc
 
             <!-- create bean 1. id is to refer this bean. 2. class attribute determine 
                 which bean object needs to be created. -->
+                
             <bean id="MyBMW" class="com.springdemo.di.car.BMWCar">
 
                 <!-- inject dependency using constructor -->
