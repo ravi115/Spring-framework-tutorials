@@ -7,7 +7,7 @@ First see the XML Configuration structure:  -
       <beans>
           <bean>
           </bean>
-      </bean>
+      </beans>
 
 **beans element holds the XML schema** and **XSD which validates the elemenet used in XML configurations.**
 so the basic XML confguration must contain the following XSD: - 
@@ -20,7 +20,7 @@ so the basic XML confguration must contain the following XSD: -
             http://www.springframework.org/schema/context/spring-context.xsd">
         </beans>
 
-Let's say if want to add spring MVC support then we must include the below schema and XSD into our beans attribute: - 
+Let's say if we want to add spring MVC support then we must include the below schema and XSD into our beans attribute: - 
 
           xmlns:mvc=http://www.springframework.org/schema/mvc
           http://www.springframework.org/schema/mvc
@@ -70,7 +70,7 @@ Let's say if want to add spring MVC support then we must include the below schem
     
         <bean>
             <constructor-agrs ref = "anotherBeanId" ></constructor-agrs>
-         </bea>
+         </bean>
          ----------------------------------------------------------------------
          <bean>
             <property name="field-name-of bean class" ref="anotherBeanId"></property>
