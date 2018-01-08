@@ -3,13 +3,13 @@ public class DistanceFinder {
 	
 	public final static double AVERAGE_RADIUS_OF_EARTH_KM = 6371;
 	
-	public static double calculateDistanceInKilometer(double userLat, double userLng, double standLat, double standLng) {
+	public static double calculateDistanceInKilometer(double userLat, double userLng, double targetLat, double targetLng) {
 
-	    double latDistance = Math.toRadians(userLat - standLat);
-	    double lngDistance = Math.toRadians(userLng - standLng);
+	    double latDistance = Math.toRadians(userLat - targetLat);
+	    double lngDistance = Math.toRadians(userLng - targetLng);
 
 	    double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
-	    			+ Math.cos(Math.toRadians(userLat)) * Math.cos(Math.toRadians(standLat))
+	    			+ Math.cos(Math.toRadians(userLat)) * Math.cos(Math.toRadians(targetLat))
 	    			* Math.sin(lngDistance / 2) * Math.sin(lngDistance / 2);
 
 	    double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
