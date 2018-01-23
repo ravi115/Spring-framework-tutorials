@@ -60,6 +60,7 @@
 		<!-- inject dependency using properties file -->
 		<property name="ownerName" value="${owner.name}"></property>
 		<property name="ownerMobile" value="${owner.mobile}"></property>
+		
 	</bean>
 
 </beans>
